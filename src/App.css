@@ -122,11 +122,23 @@
   color: #dcefd2;
 }
 
+.google-button {
+  margin: 14px 0 6px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.divider {
+  margin: 10px 0 8px;
+  color: #b9d4b0;
+  text-align: center;
+}
+
 .auth-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 16px 0 12px;
+  margin: 8px 0 12px;
 }
 
 .auth-form input {
@@ -150,6 +162,29 @@
   color: #06210a;
   font-weight: 700;
   cursor: pointer;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0 10px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-weight: 700;
+  color: white;
+  margin: 0 0 2px;
 }
 
 .dashboard-card {
