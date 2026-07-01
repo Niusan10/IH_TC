@@ -4,6 +4,10 @@ import './App.css'
 const ALLOWED_DOMAIN = 'todocesped.es'
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''
 
+const localImages = import.meta.glob('./assets/*', { eager: true, import: 'default' })
+const logoImage = localImages['./assets/ibigrass-logo.svg'] || localImages['./assets/ibigrass-logo.png'] || ''
+const heroImage = localImages['./assets/landing-grass.jpg'] || localImages['./assets/landing-grass.png'] || localImages['./assets/hero.png'] || ''
+
 function App() {
   const [email, setEmail] = useState('')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -119,6 +123,7 @@ function App() {
 
       <main className="hero-block">
         <section className="hero-copy">
+          {logoImage && <img src={logoImage} alt="IbiGrass logo" className="brand-logo" />}
           <p className="eyebrow">Instalaciones simples y profesionales</p>
           <h1>La APP de instalaciones para el más tonto de la isla</h1>
           <p className="lead">
@@ -133,7 +138,7 @@ function App() {
 
         <section className="hero-media">
           <img
-            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80"
+            src={heroImage || 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80'}
             alt="Instalación de césped artificial en exterior"
           />
         </section>
