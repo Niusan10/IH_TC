@@ -385,7 +385,7 @@ function App() {
 
         <section className="access-card" id="acceso">
           <h2>Accede a la intranet</h2>
-          <p>Inicia sesión con Google o introduce tu email corporativo del dominio @todocesped.es.</p>
+          <p>Inicia sesión con tu cuenta corporativa @todocesped.es para acceder al panel.</p>
 
           {GOOGLE_CLIENT_ID ? (
             <div ref={googleButtonRef} className="google-button" />
@@ -393,18 +393,6 @@ function App() {
             <p className="status">Añade tu VITE_GOOGLE_CLIENT_ID para habilitar Google Sign-In.</p>
           )}
 
-          <div className="divider">o</div>
-
-          <form onSubmit={handleSubmit} className="auth-form">
-            <input
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="tu@todocesped.es"
-              required
-            />
-            <button type="submit">Entrar</button>
-          </form>
           <p className="status">{message}</p>
         </section>
       </div>

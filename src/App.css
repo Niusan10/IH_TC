@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+:root {
+  color-scheme: dark;
+  --brand-green: #98c11d;
+  --brand-orange: #f7a801;
+  --body-bg: #050505;
+  --panel-bg: rgba(255, 255, 255, 0.06);
+  --panel-border: rgba(152, 193, 29, 0.16);
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.72);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #111 0%, #000 60%, #050505 100%);
+  color: var(--text);
+  font-family: 'Ubuntu', sans-serif;
+}
+
 .page-shell {
   padding: 24px;
   display: flex;
@@ -15,10 +36,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgba(255,255,255,0.16);
+  border: 1px solid rgba(152, 193, 29, 0.2);
   border-radius: 999px;
   padding: 12px 18px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(8px);
 }
 
@@ -52,10 +73,10 @@
 .panel-block,
 .sidebar,
 .content {
-  border: 1px solid rgba(255,255,255,0.14);
+  border: 1px solid var(--panel-border);
   border-radius: 24px;
-  background: rgba(6, 24, 14, 0.72);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.65);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
 }
 
 .hero-copy {
@@ -66,8 +87,8 @@
   display: inline-block;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(130, 205, 96, 0.2);
-  color: #c9f2b2;
+  background: rgba(152, 193, 29, 0.2);
+  color: var(--brand-green);
   font-size: 0.85rem;
   margin-bottom: 16px;
   text-transform: uppercase;
@@ -104,14 +125,20 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #8ddb4d, #4f9d2f);
-  color: #06210a;
+  background: var(--brand-green);
+  color: #000;
 }
 
 .btn-secondary {
   background: transparent;
-  color: white;
-  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text);
+  border: 1px solid rgba(152, 193, 29, 0.25);
+}
+
+.btn-tertiary {
+  background: rgba(247, 168, 1, 0.16);
+  color: var(--brand-orange);
+  border: 1px solid rgba(247, 168, 1, 0.25);
 }
 
 .hero-media img {
@@ -151,7 +178,7 @@
 
 .nav-item {
   border: none;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   color: white;
   padding: 14px 16px;
   border-radius: 18px;
@@ -161,7 +188,7 @@
 
 .nav-item.active,
 .nav-item:hover {
-  background: rgba(143, 214, 103, 0.2);
+  background: rgba(152, 193, 29, 0.2);
 }
 
 .user-panel {
@@ -294,7 +321,7 @@ table {
 }
 
 thead {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 th,
@@ -358,11 +385,11 @@ tr:hover {
 .link {
   display: inline-block;
   margin-top: 8px;
-  color: #8ddb4d;
+  color: var(--brand-orange);
 }
 
 .muted {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .btn {
