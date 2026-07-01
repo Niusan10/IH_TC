@@ -1,0 +1,18 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="48" fill="#0B1110"/>
+  <g filter="url(#shadow)">
+    <rect x="100" y="120" width="1000" height="620" rx="36" fill="#0F1816"/>
+  </g>
+  <path d="M220 380C250 300 350 250 520 310C550 330 620 390 730 330C850 260 960 300 980 410C980 410 930 380 862 420C820 450 780 530 700 570C640 600 550 620 460 580C360 540 320 480 250 440C200 410 185 395 220 380Z" fill="#98C11D"/>
+  <path d="M220 500C250 440 330 390 420 430C450 450 520 520 620 490C700 470 760 360 830 360C930 360 960 430 980 510C980 510 930 470 862 510C820 540 760 620 700 660C640 700 550 720 460 690C360 660 320 620 250 580C200 550 185 540 220 500Z" fill="#B8DE64"/>
+  <path d="M270 620C300 560 370 520 460 560C490 580 560 650 660 620C740 600 800 490 870 490C960 490 980 560 980 630C980 630 930 590 862 630C820 660 760 740 700 780C640 820 550 840 460 810C360 780 320 740 250 700C200 670 185 660 270 620Z" fill="#D6F38B"/>
+  <path d="M380 240C380 240 430 120 520 110C610 100 680 210 710 290" stroke="#98C11D" stroke-width="24" stroke-linecap="round"/>
+  <path d="M460 180C460 180 520 100 580 90C640 80 700 160 720 230" stroke="#98C11D" stroke-width="24" stroke-linecap="round"/>
+  <path d="M820 280C820 280 860 190 930 180C1000 170 1030 260 1040 330" stroke="#98C11D" stroke-width="24" stroke-linecap="round"/>
+  <path d="M300 500C300 500 330 420 420 400C510 380 590 440 620 520" stroke="#98C11D" stroke-width="24" stroke-linecap="round"/>
+  <defs>
+    <filter id="shadow" x="0" y="0" width="1200" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="40" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+</svg>

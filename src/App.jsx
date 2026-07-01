@@ -1,12 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 const ALLOWED_DOMAIN = 'todocesped.es'
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || ''
 
 const localImages = import.meta.glob('./assets/*', { eager: true, import: 'default' })
 const logoImage = localImages['./assets/ibigrass-logo.svg'] || localImages['./assets/ibigrass-logo.png'] || ''
-const heroImage = localImages['./assets/landing-grass.jpg'] || localImages['./assets/landing-grass.png'] || localImages['./assets/hero.png'] || ''
+const heroImage = localImages['./assets/grass-illustration.svg'] || localImages['./assets/landing-grass.jpg'] || localImages['./assets/landing-grass.png'] || localImages['./assets/hero.png'] || ''
 
 const STORAGE_KEYS = {
   currentEmail: 'ih-tc-email',
@@ -52,7 +51,7 @@ function App() {
   const [displayName, setDisplayName] = useState('')
   const [avatarUrl, setAvatarUrl] = useState('')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [message, setMessage] = useState('Entra con Google o con tu email corporativo para ver la intranet.')
+  const [message, setMessage] = useState('Introduce tu email corporativo @todocesped.es para acceder.')
   const [page, setPage] = useState('dashboard')
   const [allowedUsers, setAllowedUsers] = useState([])
   const [adminEmail, setAdminEmail] = useState('')
@@ -63,7 +62,6 @@ function App() {
   const [newWork, setNewWork] = useState(defaultWork)
   const [newParticipantName, setNewParticipantName] = useState('')
   const [newAllowedEmail, setNewAllowedEmail] = useState('')
-  const googleButtonRef = useRef(null)
 
   useEffect(() => {
     const storedEmail = window.localStorage.getItem(STORAGE_KEYS.currentEmail)
@@ -85,27 +83,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (!GOOGLE_CLIENT_ID || !window.google?.accounts?.id || !googleButtonRef.current) {
-      return
-    }
-
-    window.google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      callback: handleCredentialResponse,
-      auto_select: false,
-      cancel_on_tap_outside: true,
-    })
-
-    window.google.accounts.id.renderButton(googleButtonRef.current, {
-      theme: 'outline',
-      size: 'large',
-      text: 'continue_with',
-      shape: 'pill',
-      width: 280,
-    })
-  }, [googleButtonRef.current])
-
-  useEffect(() => {
     saveStorage(STORAGE_KEYS.allowedUsers, allowedUsers)
   }, [allowedUsers])
 
@@ -123,19 +100,6 @@ function App() {
 
   const currentUserIsAdmin = useMemo(() => email === adminEmail, [email, adminEmail])
 
-  const decodeJwtPayload = (token) => {
-    const base64Url = token.split('.')[1]
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split('')
-        .map((char) => `%${`00${char.charCodeAt(0).toString(16)}`.slice(-2)}`)
-        .join('')
-    )
-
-    return JSON.parse(jsonPayload)
-  }
-
   const authorizeUser = (normalizedEmail) => {
     if (allowedUsers.length === 0) {
       setAllowedUsers([normalizedEmail])
@@ -144,33 +108,6 @@ function App() {
     }
 
     return allowedUsers.includes(normalizedEmail)
-  }
-
-  const handleCredentialResponse = (response) => {
-    if (!response?.credential) {
-      setMessage('No se pudo completar el acceso con Google.')
-      return
-    }
-
-    const payload = decodeJwtPayload(response.credential)
-    const userEmail = payload.email?.toLowerCase() || ''
-
-    if (!userEmail.endsWith(`@${ALLOWED_DOMAIN}`)) {
-      setMessage(`Solo se permiten cuentas con dominio @${ALLOWED_DOMAIN}.`)
-      return
-    }
-
-    if (!authorizeUser(userEmail)) {
-      setMessage('Usuario no autorizado. El admin debe añadirte primero.')
-      return
-    }
-
-    window.localStorage.setItem(STORAGE_KEYS.currentEmail, userEmail)
-    setEmail(userEmail)
-    setDisplayName(payload.name || userEmail)
-    setAvatarUrl(payload.picture || '')
-    setIsAuthenticated(true)
-    setMessage(`Acceso permitido para ${userEmail}`)
   }
 
   const handleSubmit = (event) => {
@@ -387,11 +324,18 @@ function App() {
           <h2>Accede a la intranet</h2>
           <p>Inicia sesión con tu cuenta corporativa @todocesped.es para acceder al panel.</p>
 
-          {GOOGLE_CLIENT_ID ? (
-            <div ref={googleButtonRef} className="google-button" />
-          ) : (
-            <p className="status">Añade tu VITE_GOOGLE_CLIENT_ID para habilitar Google Sign-In.</p>
-          )}
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="tu@todocesped.es"
+              aria-label="Correo electrónico corporativo"
+            />
+            <button type="submit" className="btn btn-primary">
+              Entrar
+            </button>
+          </form>
 
           <p className="status">{message}</p>
         </section>

@@ -460,12 +460,6 @@ button.btn-tertiary {
   color: #dcefd2;
 }
 
-.google-button {
-  margin: 14px 0 6px;
-  display: flex;
-  justify-content: flex-start;
-}
-
 .divider {
   margin: 10px 0 8px;
   color: #b9d4b0;
