@@ -305,11 +305,6 @@ function App() {
             <p className="lead">
               Controla obras, equipos y finanzas desde un panel interno seguro para tu equipo.
             </p>
-            <div className="actions">
-              <a href="#acceso" className="btn btn-primary">
-                Acceder al panel
-              </a>
-            </div>
           </section>
 
           <section className="hero-media">
